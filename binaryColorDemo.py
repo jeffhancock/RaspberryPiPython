@@ -11,8 +11,9 @@
 # For all bits one, all rainbow lights will be on.
 # A midi note will be played based on the value when a touch pad is pressed.
 
-import signal
+import atexit
 import rainbowhat as rh
+import signal
 
 # Clear the alphanumeric display
 rh.display.clear()
@@ -34,8 +35,8 @@ rh.rainbow.show()
 # Initialize all 3 bits to False
 bit_state = [False, False, False]
 
-# Get the integer value of the three bits (0 - 7)
 def get_value():
+    """Get the integer value of the three bits (0 - 7)."""
     value = 0
     # This may seem a bit backwards, giving bit number 0 a value of
     # 4, but that's what we need to do to put the least significant
@@ -52,16 +53,17 @@ def get_value():
         value += 1
     return value
 
-# Display the given value on the alphanumeric display
 def display_value(value):
+    """Display the given value on the alphanumeric display."""
     rh.display.print_hex(value)
     rh.display.show()
 
-# Light up the rainbow light corresponding to the given value (0-7)
-# There is no light #7, so for that case, light them all.
-# Use the three bits as RGB values to determine the color, except in
-# the case of zero.  In that case, do a dim white.
 def do_rainbow(value):
+    """Light up the rainbow light corresponding to the given value (0-7).
+
+    There is no light #7, so for that case, light them all.
+    Use the three bits as RGB values to determine the color, except in
+    the case of zero.  In that case, do a dim white."""
     rh.rainbow.clear()
     if value == 0:
         # Don't want the light to be off, so do a dim white.
@@ -84,15 +86,16 @@ def do_rainbow(value):
             rh.rainbow.set_pixel(i, red, green, blue)
     rh.rainbow.show()
 
-# Do a beep, middle C or above
 def beep(value):
+    """Do a beep, middle C or above."""
     MIDDLE_C = 60
     rh.buzzer.midi_note(MIDDLE_C + value, .5)
 
-# Define a function for a button press and bind it to the press event
-# defined in touch.py
 @rh.touch.press()
 def touch_a(channel):
+    """Define a function for a button press.
+
+    Bind it to the press event defined in touch.py."""
     # Toggle the state of the bit specified by channel
     if bit_state[channel]:
         # Bit is currently on.  Turn it off.
