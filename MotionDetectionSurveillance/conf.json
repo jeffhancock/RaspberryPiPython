@@ -1,0 +1,16 @@
+{
+	"show_video": true,
+	"min_upload_seconds": 3.0,
+	"min_motion_frames": 8,
+	"camera_warmup_time": 2.5,
+	"delta_thresh": 5,
+	"resolution": [1920, 1080],
+	"x_min": 400, 
+	"x_max": 550,
+	"y_min": 2,
+	"y_max": 12,
+	"fps": 30,
+	"min_area": 200,
+	"idle_timeout": 10,
+	"write_dir": "/media/pi/My Passport/SurveillanceVideos/"
+}
