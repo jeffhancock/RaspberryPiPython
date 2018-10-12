@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+python3 video_surveillance.py --conf conf.json
