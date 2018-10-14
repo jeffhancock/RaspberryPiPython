@@ -158,7 +158,7 @@ for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True
         # We don't want the updating of that to be detected as motion and keep
         # the recording alive forever.
         # NOTE:  These values
-        if not (x >= x_min and x <= x_max and y >= y_min and y <= y_max):
+        if not (x_min <= x <= x_max and y_min <= y <= y_max):
             # Temporary info to help determine / tun the above values.
             # May still need some teaking for the lower limit of x, for hour,
             # day, year changes.  Probably not worth the effort though.
