@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-python3 video_surveillance.py --conf conf.json
+# This script goes in the same directory as video_surveillance.py.
+# To make it run on startup (for Raspbian Stretch version), edit the file /home/pi/.config/lxsession/LXDE-pi/autostart:
+#   Between @pcumanfm and @xscreensaver lines, add the following line:
+#     @lxterminal -e /home/pi/Camera/MotionDetectionSurveillance/go
+#
+/usr/bin/python3 /home/pi/Camera/MotionDetectionSurveillance/video_surveillance.py --conf /home/pi/Camera/MotionDetectionSurveillance/conf.json

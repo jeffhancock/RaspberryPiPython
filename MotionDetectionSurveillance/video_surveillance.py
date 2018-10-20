@@ -56,14 +56,15 @@ class State(Enum):
     IDLE =  0
     RECORDING = 1
     ACTIVE = 2
- 
+
 # Start out in the IDLE state.
 state = State.IDLE
- 
+  
 # Construct the argument parser and parse the arguments.
 ap = argparse.ArgumentParser()
 ap.add_argument("-c", "--conf", required=True,	help="Path to the JSON configuration file")
 args = vars(ap.parse_args())
+
  
 # Filter warnings.
 warnings.filterwarnings("ignore")

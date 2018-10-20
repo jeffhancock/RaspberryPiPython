@@ -172,7 +172,7 @@ if rh_found:
         Bind it to the press event defined in touch.py.
         """
         print(channel)
-        if channel == 2: # Button C
+        if channel == 1: # Button B (quit)
             # Play a tone, slightly different for each button.
             beep(channel * 5)
         
@@ -182,6 +182,17 @@ if rh_found:
             print('Exiting')
             sys.exit(0)
     
+        if channel == 2: # Button C (quit and shutdown)
+            command = "/usr/bin/sudo /sbin/shutdown now"
+            # Play a tone, slightly different for each button.
+            beep(channel * 5)
+            
+            if VideoRecorder.recording:
+                VideoRecorder.stop()
+            VideoRecorder.quit()
+            os.system(command)
+            exit(0)
+            
         if channel > 2:
             print('Unexpected button touched!  How did that happen?!')
             if VideoRecorder.recording:
